@@ -54,6 +54,6 @@ eval "$com"
 
 com="su $DEFAULT_USER -c '/opt/venv/reticulate/bin/jupyter notebook --no-browser --ip=0.0.0.0 --port=8888 --allow-root &'"
 echo "$com"
-eval "$com"
+#eval "$com"
 
 echo "================ Finished magic_init_win.sh ================"
