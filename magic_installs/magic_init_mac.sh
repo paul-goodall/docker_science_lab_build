@@ -6,7 +6,7 @@ com="rm -rf /home/rstudio ; ln -s ${MAGIC_FOLDER} /home/$DEFAULT_USER"
 echo "$com"
 eval "$com"
 
-com="cd /home/$DEFAULT_USER ; mkdir .jupyter"
+com="mkdir -p /home/$DEFAULT_USER/.jupyter"
 echo "$com"
 eval "$com"
 
