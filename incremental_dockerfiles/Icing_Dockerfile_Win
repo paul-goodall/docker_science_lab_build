@@ -1,0 +1,23 @@
+FROM goodsy/dsl_cake:u20_r420_202205
+
+ARG docker_stamp
+ARG docker_file
+RUN mkdir -p /Dockerfiles
+COPY $docker_file /Dockerfiles/$docker_stamp
+
+RUN mkdir -p mkdir -p /Volumes/Abyss
+RUN chmod -R 777 /Volumes
+
+COPY magic_installs/magic_init_win.sh /root/magic_init.sh
+
+#RUN rm -rf /home/$DEFAULT_USER; ln -s ${MAGIC_FOLDER} /home/$DEFAULT_USER
+
+COPY magic_installs/jupyter_notebook_config.json /jupyter_notebook_config.json
+RUN chmod -R 777 jupyter_notebook_config.json
+
+COPY dot_files /dot_files
+
+# Ports for rstudio-server, shiny-server, and jupyter-notebook:
+EXPOSE 8787 3838 8888
+
+CMD ["/bin/bash", "/root/magic_init.sh"]

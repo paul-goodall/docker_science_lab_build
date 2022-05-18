@@ -1,0 +1,16 @@
+FROM dsl_cake:ubuntu20_rdev_202205
+
+ARG docker_stamp
+ARG docker_file
+RUN mkdir -p /Dockerfiles
+COPY $docker_file /Dockerfiles/$docker_stamp
+
+RUN mkdir -p mkdir -p /Volumes/Abyss
+RUN chmod -R 777 /Volumes
+
+COPY magic_installs/magic_init.sh /root/magic_init.sh
+
+# Ports for rstudio-server, shiny-server, and jupyter-notebook:
+EXPOSE 8787 3838 8888
+
+CMD ["/bin/bash", "/root/magic_init.sh"]
