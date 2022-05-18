@@ -20,4 +20,4 @@ else
 fi
 
 /init
-echo "================ Entering magic_init.sh ================"
+echo "================ Finished magic_init.sh ================"
