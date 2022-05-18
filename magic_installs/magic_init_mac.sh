@@ -2,7 +2,7 @@
 
 echo "================ Entering magic_init_mac.sh ================"
 # Persistent home folder hack:
-com=( rm -rf /home/rstudio; ln -s ${MAGIC_FOLDER}/$DEFAULT_USER /home/$DEFAULT_USER )
+com=( "rm -rf /home/rstudio; ln -s ${MAGIC_FOLDER}/$DEFAULT_USER /home/$DEFAULT_USER" )
 echo $com
 ${com}
 
