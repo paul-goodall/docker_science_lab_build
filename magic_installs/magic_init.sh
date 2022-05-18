@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo "================ Entering magic_init.sh ================"
 if [ ! -d "/home/${DEFAULT_USER}/magic_home/magic_init/" ] || [ "$FRESH_START" == "yes" ]
 then
   mkdir -p /home/${DEFAULT_USER}/magic_home/magic_init/
@@ -19,3 +20,4 @@ else
 fi
 
 /init
+echo "================ Entering magic_init.sh ================"

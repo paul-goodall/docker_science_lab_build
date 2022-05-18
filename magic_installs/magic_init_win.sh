@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
+echo "================ Entering magic_init_win.sh ================"
 # =====
-echo "copying dir:"
 cp -rf /home/${DEFAULT_USER} /Volumes/${DEFAULT_USER}_temp
 rm -rf /home/${DEFAULT_USER}; ln -s ${MAGIC_FOLDER} /home/${DEFAULT_USER};
 chmod -R 755 /home/${DEFAULT_USER}
@@ -42,4 +42,4 @@ cp /dot_files/.bashrc /home/${DEFAULT_USER}/.
 cp /dot_files/.bash_logout /home/${DEFAULT_USER}/.
 cp /dot_files/.profile /home/${DEFAULT_USER}/.
 
-/init
+echo "================ Finished magic_init_win.sh ================"

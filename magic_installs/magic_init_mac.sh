@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo "================ Entering magic_init_mac.sh ================"
 # Persistent home folder hack:
 rm -rf /home/rstudio; ln -s ${MAGIC_FOLDER}/$DEFAULT_USER /home/$DEFAULT_USER;
 
@@ -10,4 +11,4 @@ chmod -R 755 /home/$DEFAULT_USER/.jupyter
 cd ${MAGIC_FOLDER}
 su $DEFAULT_USER -c "/opt/venv/reticulate/bin/jupyter notebook --no-browser --ip=0.0.0.0 --port=8888 --allow-root &"
 
-/init
+echo "================ Finished magic_init_mac.sh ================"
