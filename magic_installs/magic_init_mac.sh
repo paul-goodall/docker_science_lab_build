@@ -26,6 +26,4 @@ com="su $DEFAULT_USER -c '/opt/venv/reticulate/bin/jupyter notebook --no-browser
 echo "$com"
 eval "$com"
 
-cd /
-
 echo "================ Finished magic_init_mac.sh ================"
