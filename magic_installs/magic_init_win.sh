@@ -11,6 +11,10 @@ com="chmod -R 755 /home/${DEFAULT_USER}"
 echo "$com"
 eval "$com"
 
+com="chmod -R 755 /Volumes/Abyss"
+echo "$com"
+eval "$com"
+
 # Must create this if it doesn't exist.  The default jupyter notebooks password is 'jupyter'
 if [ ! -d "/home/${DEFAULT_USER}/.jupyter" ] || [ "$FRESH_START" == "yes" ]
 then
@@ -20,7 +24,7 @@ then
   com="cp /jupyter_notebook_config.json /home/${DEFAULT_USER}/.jupyter/jupyter_notebook_config.json"
   echo "$com"
   eval "$com"
-  com="chmod -R 755 /home/${DEFAULT_USER}/.jupyter"
+  com="chmod -R 755 /home/${DEFAULT_USER}"
   echo "$com"
   eval "$com"
 else
