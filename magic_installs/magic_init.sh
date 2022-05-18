@@ -19,5 +19,6 @@ else
   ./magic_init_mac.sh
 fi
 
+cd /
 /init
 echo "================ Finished magic_init.sh ================"
