@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-docker_file="${dockerfile_dir}/Cake_Dockerfile"
-image_name="dsl_cake:${build_label}"
+docker_file="incremental_dockerfiles/Cake_Dockerfile"
+image_name="goodsy/dsl_cake:u20_r420_202205"
 docker_stamp="Dockerfile_$(date +%Y.%m.%d-%H.%M.%S)"
 
 docker build -f $docker_file \

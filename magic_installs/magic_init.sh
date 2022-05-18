@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 
-# Persistent home folder hack:
-rm -rf /home/rstudio; ln -s ${MAGIC_FOLDER}/$DEFAULT_USER /home/$DEFAULT_USER;
+if [ ! -d "/home/${DEFAULT_USER}/magic_home/magic_init/" ] || [ "$FRESH_START" == "yes" ]
+then
+  mkdir -p /home/${DEFAULT_USER}/magic_home/magic_init/
+  cd /home/${DEFAULT_USER}/magic_home/magic_init/
+  wget https://raw.githubusercontent.com/paul-goodall/docker_science_lab_build/main/magic_installs/magic_init_mac.sh
+  wget https://raw.githubusercontent.com/paul-goodall/docker_science_lab_build/main/magic_installs/magic_init_win.sh
+  chmod 755 magic_init_win.sh
+  chmod 755 magic_init_mac.sh
+fi
 
-mkdir -p /home/$DEFAULT_USER/.jupyter
-mv /jupyter_notebook_config.json /home/$DEFAULT_USER/.jupyter/jupyter_notebook_config.json
-chmod -R 755 /home/$DEFAULT_USER/.jupyter
-
-cd ${MAGIC_FOLDER}
-su $DEFAULT_USER -c "/opt/venv/reticulate/bin/jupyter notebook --no-browser --ip=0.0.0.0 --port=8888 --allow-root &"
+cd /home/${DEFAULT_USER}/magic_home/magic_init/
+if [ "$HOST_OS" == "win" ]
+then
+  ./magic_init_win.sh
+else
+  ./magic_init_mac.sh
+fi
 
 /init

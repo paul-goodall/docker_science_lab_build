@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-docker_file="incremental_dockerfiles/Icing_Dockerfile_Win"
-image_name="goodsy/data_science_lab:u20_r420_202205_win"
+docker_file="incremental_dockerfiles/Icing_Dockerfile"
+image_name="goodsy/data_science_lab:u20_r420_202205"
 docker_stamp="Dockerfile_$(date +%Y.%m.%d-%H.%M.%S)"
 
 docker build -f $docker_file \
