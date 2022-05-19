@@ -3,9 +3,9 @@
 echo "================ Entering magic_init_win.sh ================"
 # =====
 
-com="ln -s ${MAGIC_FOLDER} /home/${DEFAULT_USER}"
-echo "$com"
-eval "$com"
+#com="ln -s ${MAGIC_FOLDER} /home/${DEFAULT_USER}"
+#echo "$com"
+#eval "$com"
 
 com="chmod -R 755 /home/${DEFAULT_USER}"
 echo "$com"
