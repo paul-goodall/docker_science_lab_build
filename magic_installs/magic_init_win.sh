@@ -3,9 +3,9 @@
 echo "================ Entering magic_init_win.sh ================"
 # =====
 
-com="rm -rf /home/${DEFAULT_USER} ; ln -s ${MAGIC_FOLDER} /home/${DEFAULT_USER}"
-echo "$com"
-eval "$com"
+#com="rm -rf /home/${DEFAULT_USER} ; ln -s ${MAGIC_FOLDER} /home/${DEFAULT_USER}"
+#echo "$com"
+#eval "$com"
 
 com="chmod -R 755 /home/${DEFAULT_USER}"
 echo "$com"
@@ -58,6 +58,6 @@ eval "$com"
 
 com="su $DEFAULT_USER -c '/opt/venv/reticulate/bin/jupyter notebook --no-browser --ip=0.0.0.0 --port=8888 --allow-root &'"
 echo "$com"
-#eval "$com"
+eval "$com"
 
 echo "================ Finished magic_init_win.sh ================"
