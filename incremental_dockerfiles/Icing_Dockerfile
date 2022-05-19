@@ -10,7 +10,7 @@ RUN chmod -R 777 /Volumes
 
 COPY magic_installs/magic_init.sh /root/magic_init.sh
 
-#RUN rm -rf /home/$DEFAULT_USER; ln -s ${MAGIC_FOLDER} /home/$DEFAULT_USER
+RUN rm -rf /home/$DEFAULT_USER; ln -s ${MAGIC_FOLDER} /home/$DEFAULT_USER
 
 COPY magic_installs/jupyter_notebook_config.json /jupyter_notebook_config.json
 RUN chmod -R 777 jupyter_notebook_config.json
