@@ -1,24 +1,57 @@
 #!/usr/bin/env bash
 
 echo "================ Entering magic_init.sh ================"
-if [ ! -d "/home/${DEFAULT_USER}/magic_home/magic_init/" ] || [ "$FRESH_START" == "yes" ]
-then
-  mkdir -p /home/${DEFAULT_USER}/magic_home/magic_init/
-  cd /home/${DEFAULT_USER}/magic_home/magic_init/
-  wget https://raw.githubusercontent.com/paul-goodall/docker_science_lab_build/main/magic_installs/magic_init_mac.sh
-  wget https://raw.githubusercontent.com/paul-goodall/docker_science_lab_build/main/magic_installs/magic_init_win.sh
-  chmod 755 magic_init_win.sh
-  chmod 755 magic_init_mac.sh
-fi
 
-cd /home/${DEFAULT_USER}/magic_home/magic_init/
-if [ "$HOST_OS" == "win" ]
+# Must create this if it doesn't exist.  The default jupyter notebooks password is 'jupyter'
+if [ ! -d "/home/${DEFAULT_USER}/.jupyter" ] || [ "$FRESH_START" == "yes" ]
 then
-  ./magic_init_win.sh
+  com="mkdir -p /home/${DEFAULT_USER}/.jupyter"
+  echo "$com"
+  eval "$com"
+  com="cp /jupyter_notebook_config.json /home/${DEFAULT_USER}/.jupyter/jupyter_notebook_config.json"
+  echo "$com"
+  eval "$com"
+  com="chmod -R 777 /home/${DEFAULT_USER}"
+  echo "$com"
+  eval "$com"
 else
-  ./magic_init_mac.sh
+    echo "Running as a resumed session."
 fi
 
-cd /
-/init
+# Shiny server examples setup
+if [ ! -d "/home/${DEFAULT_USER}/shiny-server" ]
+then
+    mv -f /srv/shiny-server /home/${DEFAULT_USER}/.
+else
+    rm -rf /srv/shiny-server
+fi
+com="ln -s /home/${DEFAULT_USER}/shiny-server /srv/shiny-server"
+echo "$com"
+eval "$com"
+com="chmod -R 777 /srv"
+echo "$com"
+eval "$com"
+
+com="cp -rf /00_runcom /home/${DEFAULT_USER}/shiny-server/."
+echo "$com"
+eval "$com"
+
+com="cp /dot_files/.bashrc /dot_files/.bash_logout /dot_files/.profile /home/${DEFAULT_USER}/."
+echo "$com"
+eval "$com"
+
+com="chmod -R 777 /home/${DEFAULT_USER}"
+echo "$com"
+eval "$com"
+
+com="cd ${MAGIC_FOLDER}"
+echo "$com"
+eval "$com"
+
+com="su $DEFAULT_USER -c '/opt/venv/reticulate/bin/jupyter notebook --no-browser --ip=0.0.0.0 --port=8888 --allow-root &'"
+echo "$com"
+eval "$com"
+
 echo "================ Finished magic_init.sh ================"
+#nohup /init > /home/${DEFAULT_USER}/nohup.log &
+/init
